@@ -30,6 +30,18 @@ def move():                                 # defining the function called "move
         y = head.ycor()                     # creating variable y and setting it to y coordinate with no arguement
         head.sety(y + 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
 
+    if head.direction == "down":              # creating if statement for positive vertical movement
+        y = head.ycor()                     # creating variable y and setting it to y coordinate with no arguement
+        head.sety(y - 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
+    
+    if head.direction == "right":              # creating if statement for positive vertical movement
+        y = head.xcor()                     # creating variable y and setting it to y coordinate with no arguement
+        head.setx(x + 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
+
+    if head.direction == "left":              # creating if statement for positive vertical movement
+        y = head.xcor()                     # creating variable y and setting it to y coordinate with no arguement
+        head.setx(x - 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
+    
 # Main game loop
 while True:
     window.update()
