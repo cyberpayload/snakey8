@@ -19,7 +19,7 @@ head.shape("square")                        # shape of the snake head
 head.color("black")                         # color of the snake head
 head.penup()                                # this allows the snake to NOT draw when moving (pen is up)
 head.goto(0,0)                              # set the snake in the center
-head.direction = "stop"                     # direction of snake head during start of game
+head.direction = "up"                       # direction of snake head during start of game
 
 # Functions
 def move():                                 # defining the function called "move" for the behavior of the snake
@@ -31,4 +31,6 @@ def move():                                 # defining the function called "move
 while True:
     window.update()
 
-window.mainloop()                           #creates main window loop
+
+move()
+window.mainloop()                           # creates main window loop
