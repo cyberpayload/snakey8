@@ -3,6 +3,9 @@
 # By @cyberpayload
 
 import turtle
+import time
+
+delay = 0.1
 
 # Setting up screenplay
 
@@ -30,7 +33,10 @@ def move():                                 # defining the function called "move
 # Main game loop
 while True:
     window.update()
+    
+    time.sleep(delay)
+
+    move()
 
 
-move()
 window.mainloop()                           # creates main window loop
