@@ -21,6 +21,11 @@ head.penup()                                # this allows the snake to NOT draw 
 head.goto(0,0)                              # set the snake in the center
 head.direction = "stop"                     # direction of snake head during start of game
 
+# Functions
+def move():                                 # defining the function called "move" for the behavior of the snake
+    if head.direction == "up":              # creating if statement for positive vertical movement
+        y = head.ycor()                     # creating variable y and setting it to y coordinate with no arguement
+        head.sety(y + 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
 
 # Main game loop
 while True:
