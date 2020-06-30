@@ -44,16 +44,16 @@ def move():                                 # defining the function called "move
     
 # Keyboard functions
 def keyUp():
-    head.direction == "up"
+    head.direction = "up"
 
 def keyDown():
-    head.direction == "down"
+    head.direction = "down"
 
 def keyRight():
-    head.direction == "right"
+    head.direction = "right"
 
 def keyLeft():
-    head.direction == "left"
+    head.direction = "left"
 
 # Main game loop
 while True:
