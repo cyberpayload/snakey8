@@ -35,11 +35,11 @@ def move():                                 # defining the function called "move
         head.sety(y - 20)                   # calling the set method and giving it a negative vertial coordinate from its current location
     
     if head.direction == "right":           # creating if statement for positive horizontal movement
-        y = head.xcor()                     # creating variable x and setting it to x coordinate with no arguement
+        x = head.xcor()                     # creating variable x and setting it to x coordinate with no arguement
         head.setx(x + 20)                   # calling the set method and giving it a positive horizontal coordinate from its current location
 
     if head.direction == "left":            # creating if statement for negative horiztonal movement
-        y = head.xcor()                     # creating variable x and setting it to x coordinate with no arguement
+        x = head.xcor()                     # creating variable x and setting it to x coordinate with no arguement
         head.setx(x - 20)                   # calling the set method and giving it a negative horiztonal coordinate from its current location
     
 # Keyboard functions
