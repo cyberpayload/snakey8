@@ -30,18 +30,31 @@ def move():                                 # defining the function called "move
         y = head.ycor()                     # creating variable y and setting it to y coordinate with no arguement
         head.sety(y + 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
 
-    if head.direction == "down":              # creating if statement for positive vertical movement
+    if head.direction == "down":            # creating if statement for negative vertical movement
         y = head.ycor()                     # creating variable y and setting it to y coordinate with no arguement
-        head.sety(y - 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
+        head.sety(y - 20)                   # calling the set method and giving it a negative vertial coordinate from its current location
     
-    if head.direction == "right":              # creating if statement for positive vertical movement
-        y = head.xcor()                     # creating variable y and setting it to y coordinate with no arguement
-        head.setx(x + 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
+    if head.direction == "right":           # creating if statement for positive horizontal movement
+        y = head.xcor()                     # creating variable x and setting it to x coordinate with no arguement
+        head.setx(x + 20)                   # calling the set method and giving it a positive horizontal coordinate from its current location
 
-    if head.direction == "left":              # creating if statement for positive vertical movement
-        y = head.xcor()                     # creating variable y and setting it to y coordinate with no arguement
-        head.setx(x - 20)                   # calling the set method and giving it a positive vertial coordinate from its current location
+    if head.direction == "left":            # creating if statement for negative horiztonal movement
+        y = head.xcor()                     # creating variable x and setting it to x coordinate with no arguement
+        head.setx(x - 20)                   # calling the set method and giving it a negative horiztonal coordinate from its current location
     
+# Keyboard functions
+def keyUp():
+    head.direction = "up"
+
+def keyDown():
+    head.direction = "down"
+
+def keyRight():
+    head.direction = "right"
+
+def keyLeft():
+    head.direction = "left"
+
 # Main game loop
 while True:
     window.update()
