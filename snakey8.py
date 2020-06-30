@@ -55,6 +55,13 @@ def keyRight():
 def keyLeft():
     head.direction = "left"
 
+# Keyboard Bindings
+window.listen()                             # creates a listener so we can press keys to control the movement of the snake head
+window.onkeypress(keyUp, "8")               # keypad press 8 goes up
+window.onkeypress(keyDown, "2")             # keypad press 5 goes down
+window.onkeypress(keyRight, "6")            # keypad press 6 goes right
+window.onkeypress(keyLeft, "4")             # keypad press 4 goes left
+
 # Main game loop
 while True:
     window.update()
