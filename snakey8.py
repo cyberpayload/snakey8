@@ -41,7 +41,18 @@ def move():                                 # defining the function called "move
     if head.direction == "left":            # creating if statement for negative horiztonal movement
         x = head.xcor()                     # creating variable x and setting it to x coordinate with no arguement
         head.setx(x - 20)                   # calling the set method and giving it a negative horiztonal coordinate from its current location
-    
+
+
+# Snake food
+food = turtle.Turtle()                      # creates the turle object
+food.speed(0)                               # animation speed of the turtle
+food.shape("square")                        # shape of the snake head
+food.color("green")                         # color of the snake head
+food.penup()                                # this allows the snake to NOT draw when moving (pen is up)
+food.goto(0,100)                            # set the snake in the at 100 on y axis
+food.direction = "up"                       # direction of snake head during start of game
+
+
 # Keyboard functions
 def keyUp():
     head.direction = "up"
