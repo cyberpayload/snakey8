@@ -66,9 +66,9 @@ window.onkeypress(keyLeft, "4")             # keypad press 4 goes left
 while True:
     window.update()
     
-    time.sleep(delay)
+    time.sleep(delay)                       # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
 
-    move()
+    move()                                  # move() calls the function to start moving the snake when you start the game
 
 
 window.mainloop()                           # creates main window loop
