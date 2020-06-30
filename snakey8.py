@@ -78,14 +78,14 @@ window.onkeypress(keyLeft, "4")             # keypad press 4 goes left
 while True:
     window.update()
     
-    if head.distance(food) < 20:            # stating a condotion if head makes a collision with the food
-        x = random.randint(-780, 780)       # logical x axis boundary
-        y = random.randint(-780, 780)       # logical y axis boundary
-        food.goto(x.y)                      # food modes to a random x,y coordinate
+    if head.distance(food) < 20:            # stating a condition if head makes a collision with the food
+        x = random.randint(-390, 390)       # logical x axis boundary
+        y = random.randint(-390, 390)       # logical y axis boundary
+        food.goto(x,y)                      # food moves to a random x,y coordinate
 
-    time.sleep(delay)                       # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
+    
 
     move()                                  # move() calls the function to start moving the snake when you start the game
-
+    time.sleep(delay)                       # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
 
 window.mainloop()                           # creates main window loop
