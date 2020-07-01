@@ -23,7 +23,7 @@ head.shape("square")                        # shape of the snake head
 head.color("black")                         # color of the snake head
 head.penup()                                # this allows the snake to NOT draw when moving (pen is up)
 head.goto(0,0)                              # set the snake in the center
-head.direction = "up"                       # direction of snake head during start of game
+head.direction = "stop"                       # direction of snake head during start of game
 
 # Functions
 def move():                                 # defining the function called "move" for the behavior of the snake
@@ -48,11 +48,12 @@ def move():                                 # defining the function called "move
 food = turtle.Turtle()                      # creates the turle object
 food.speed(0)                               # animation speed of the turtle
 food.shape("square")                        # shape of the snake head
-food.color("green")                         # color of the snake head
+food.color("red")                         # color of the snake head
 food.penup()                                # this allows the snake to NOT draw when moving (pen is up)
 food.goto(0,100)                            # set the snake in the at 100 on y axis
 food.direction = "up"                       # direction of snake head during start of game
 
+segments = []
 
 # Keyboard functions
 def keyUp():
@@ -78,12 +79,32 @@ window.onkeypress(keyLeft, "4")             # keypad press 4 goes left
 while True:
     window.update()
     
+
+#check for collision
     if head.distance(food) < 20:            # stating a condition if head makes a collision with the food
         x = random.randint(-390, 390)       # logical x axis boundary
         y = random.randint(-390, 390)       # logical y axis boundary
         food.goto(x,y)                      # food moves to a random x,y coordinate
 
-    
+        # Add a segment    
+        new_segment = turtle.Turtle()
+        new_segment.speed(0)                               # animation speed of the turtle
+        new_segment.shape("square")                        # shape of the snake head
+        new_segment.color("green")                         # color of the snake head
+        new_segment.penup()                                # this allows the snake to NOT draw when moving (pen is up)
+        segments.append(new_segment)
+
+    # Move the end segments first in reverse
+    for index in range(len(segments)-1, 0, -1):
+        x = segments[index-1].xcor()
+        y = segments[index-1].ycor()
+        segments[index].goto(x, y)
+
+    # Move segment zero to where the head is
+    if len(segments) > 0:
+        x = head.xcor()
+        y = head.ycor()
+        segments[0].goto(x, y)
 
     move()                                  # move() calls the function to start moving the snake when you start the game
     time.sleep(delay)                       # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
