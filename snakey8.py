@@ -57,16 +57,20 @@ segments = []
 
 # Keyboard functions
 def keyUp():
-    head.direction = "up"
+    if head.direction != "down":
+        head.direction = "up"
 
 def keyDown():
-    head.direction = "down"
+    if head.direction != "up":
+        head.direction = "down"
 
 def keyRight():
-    head.direction = "right"
+    if head.direction != "left":
+        head.direction = "right"
 
 def keyLeft():
-    head.direction = "left"
+    if head.direction != "right":
+        head.direction = "left"
 
 # Keyboard Bindings
 window.listen()                             # creates a listener so we can press keys to control the movement of the snake head
@@ -91,7 +95,7 @@ while True:
 
         # Clear the existing segments
         segments.clear()
-        
+
 #check for collision
     if head.distance(food) < 20:            # stating a condition if head makes a collision with the food
         x = random.randint(-380, 380)       # logical x axis boundary
@@ -119,6 +123,20 @@ while True:
         segments[0].goto(x, y)                  # moves the first segment og index x to where the snake head is
 
     move()                                      # move() calls the function to start moving the snake when you start the game
+    
+    # Check for head collision with the body segments
+    for segment in segments:
+        if segment.distance(head) < 20:
+            time.sleep(1)
+            head.goto(0,0)
+            head.direction = "stop"
+
+            # Hide segments
+            for segment in segments:
+                segment.goto(1000, 1000)
+
+            # Clear the existing segments
+            segments.clear()
     time.sleep(delay)                           # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
 
 window.mainloop()                               # creates main window loop
