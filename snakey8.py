@@ -48,7 +48,7 @@ def move():                                 # defining the function called "move
 food = turtle.Turtle()                      # creates the turle object
 food.speed(0)                               # animation speed of the turtle
 food.shape("square")                        # shape of the snake head
-food.color("red")                         # color of the snake head
+food.color("red")                           # color of the snake head
 food.penup()                                # this allows the snake to NOT draw when moving (pen is up)
 food.goto(0,100)                            # set the snake in the at 100 on y axis
 food.direction = "up"                       # direction of snake head during start of game
@@ -78,12 +78,24 @@ window.onkeypress(keyLeft, "4")             # keypad press 4 goes left
 # Main game loop
 while True:
     window.update()
-    
 
+# Check for collision with border
+    if head.xcor()>380 or head.xcor()<-380 or head.ycor()>380 or head.ycor()<-380:
+        time.sleep(1)
+        head.goto(0,0)
+        head.direction = "stop"
+
+        # Hide segments
+        for segment in segments:
+            segment.goto(1000, 1000)
+
+        # Clear the existing segments
+        segments.clear()
+        
 #check for collision
     if head.distance(food) < 20:            # stating a condition if head makes a collision with the food
-        x = random.randint(-390, 390)       # logical x axis boundary
-        y = random.randint(-390, 390)       # logical y axis boundary
+        x = random.randint(-380, 380)       # logical x axis boundary
+        y = random.randint(-380, 380)       # logical y axis boundary
         food.goto(x,y)                      # food moves to a random x,y coordinate
 
         # Add a segment    
@@ -95,18 +107,18 @@ while True:
         segments.append(new_segment)
 
     # Move the end segments first in reverse
-    for index in range(len(segments)-1, 0, -1):
-        x = segments[index-1].xcor()
-        y = segments[index-1].ycor()
+    for index in range(len(segments)-1, 0, -1):     # specify -1 as start, 0 or forward at the max (creating a distance) and a "reverse step" (for snake tail motion)
+        x = segments[index-1].xcor()                # moving the snake body backwards horizontally from the snake head 
+        y = segments[index-1].ycor()                # moving the snake head backwards vertically from the snake head
         segments[index].goto(x, y)
 
     # Move segment zero to where the head is
     if len(segments) > 0:
         x = head.xcor()
         y = head.ycor()
-        segments[0].goto(x, y)
+        segments[0].goto(x, y)                  # moves the first segment og index x to where the snake head is
 
-    move()                                  # move() calls the function to start moving the snake when you start the game
-    time.sleep(delay)                       # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
+    move()                                      # move() calls the function to start moving the snake when you start the game
+    time.sleep(delay)                           # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
 
-window.mainloop()                           # creates main window loop
+window.mainloop()                               # creates main window loop
