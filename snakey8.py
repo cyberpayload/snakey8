@@ -6,7 +6,12 @@ import turtle
 import time
 import random
 
-delay = 0.1
+delay = 0.05
+
+# Score
+score = 0
+high_score = 0
+
 
 # Setting up screenplay
 
@@ -47,13 +52,23 @@ def move():                                 # defining the function called "move
 # Snake food
 food = turtle.Turtle()                      # creates the turle object
 food.speed(0)                               # animation speed of the turtle
-food.shape("square")                        # shape of the snake head
+food.shape("circle")                        # shape of the snake head
 food.color("red")                           # color of the snake head
 food.penup()                                # this allows the snake to NOT draw when moving (pen is up)
 food.goto(0,100)                            # set the snake in the at 100 on y axis
 food.direction = "up"                       # direction of snake head during start of game
 
 segments = []
+
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("black")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Score: 0 High Score: 0", align="center", font=("Courier", 24, "normal"))
 
 # Keyboard functions
 def keyUp():
@@ -96,6 +111,10 @@ while True:
         # Clear the existing segments
         segments.clear()
 
+        # Reset the score
+        score = 0
+        pen.clear()
+        pen.write("Score: {} High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
 #check for collision
     if head.distance(food) < 20:            # stating a condition if head makes a collision with the food
         x = random.randint(-380, 380)       # logical x axis boundary
@@ -106,10 +125,17 @@ while True:
         new_segment = turtle.Turtle()
         new_segment.speed(0)                               # animation speed of the turtle
         new_segment.shape("square")                        # shape of the snake head
-        new_segment.color("green")                         # color of the snake head
+        new_segment.color("blue")                         # color of the snake head
         new_segment.penup()                                # this allows the snake to NOT draw when moving (pen is up)
         segments.append(new_segment)
 
+        # Increase score by 10
+        score += 10
+
+        if score > high_score:
+            high_score = score
+        pen.clear()
+        pen.write("Score: {} High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
     # Move the end segments first in reverse
     for index in range(len(segments)-1, 0, -1):     # specify -1 as start, 0 or forward at the max (creating a distance) and a "reverse step" (for snake tail motion)
         x = segments[index-1].xcor()                # moving the snake body backwards horizontally from the snake head 
