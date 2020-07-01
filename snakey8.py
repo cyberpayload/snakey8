@@ -115,6 +115,10 @@ while True:
         score = 0
         pen.clear()
         pen.write("Score: {} High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
+        
+        # Reset delay
+        delay = 0.05
+        
 #check for collision
     if head.distance(food) < 20:            # stating a condition if head makes a collision with the food
         x = random.randint(-380, 380)       # logical x axis boundary
@@ -132,6 +136,8 @@ while True:
         # Increase score by 10
         score += 10
 
+        # Increase snake speed by shortening the delay
+        delay -= 0.001
         if score > high_score:
             high_score = score
         pen.clear()
@@ -163,6 +169,16 @@ while True:
 
             # Clear the existing segments
             segments.clear()
+
+        
+            # Reset the score
+            score = 0
+            pen.clear()
+            pen.write("Score: {} High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
+
+            # Reset delay
+            delay = 0.05
+
     time.sleep(delay)                           # this variable delay is set to 1/10th of a second for any direction (the a human can play at an acceptable speed)
 
 window.mainloop()                               # creates main window loop
